@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Agregar Horario
+{% endblock %}
+
+{% block content %}
+<h3>Desea crear el horario ?</h3>
+<form action"." method="POST">
+	{% csrf_token %}
+	{{ form_horario.as_p }}
+	<input class="btn btn-success" type="submit" value="Crear Horario">
+	<a class="btn btn-inverse" href="/ficha/{{fic.id}}"> Cancelar </a>
+
+</form>
+{% endblock %}

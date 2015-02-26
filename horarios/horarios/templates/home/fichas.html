@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Fichas
+{% endblock %}
+
+{% block content %}
+
+	<h2>Lista de fichas del DTPI </h2>
+	{% for f in fichas %}
+	<div class="well well-small">
+		<p>
+			<b>Ficha :</b> {{ f.identificador }}  
+			<a class = "btn btn-success" href="/ficha/{{f.id}}">Ver Ficha</a>
+		</p>
+	</div>
+	
+	{% endfor %}	
+	<a href="/">Regresar Pagina principal</a>	
+{% endblock %}

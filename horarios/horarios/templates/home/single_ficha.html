@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Horario Ficha
+{% endblock %}
+
+{% block content %}
+	<div  class="well well-small">
+		<h2> <b>Ficha : </b> {{ ficha.identificador }}</h2>
+	</div>
+	
+	<br>
+	<a class = "btn btn-primary" href="/add/horario/{{ficha.id}}/">Nuevo Horario</a>
+	
+	{% for a in aprendices %}
+		<p> <b>Aprendiz : </b> {{ a.nombres }} </p>
+	{% endfor %}
+	<br><br>
+	{% for h in horarios %}
+		<p> 
+			<b>Horario : </b> {{ h.fecha }}  
+			<a class = "btn btn-info" href="/horario/{{h.id}}"> <b> Ver Horario </b> </a>
+			<a class = "btn btn-warning" href="#"> <b> Editar Horario </b> </a>
+		</p>
+	{% endfor %}
+	
+
+	<a class = "btn btn-inverse" href="/fichas/">regresar a las Fichas</a>
+
+{% endblock %}
+

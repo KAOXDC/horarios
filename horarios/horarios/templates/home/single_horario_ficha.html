@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Horario Ficha 
+{% endblock %}
+
+{% block content %}
+	<div  class="well well-small">
+	<h2>Ficha : {{ horario.ficha }}</h2>
+	<h2>Horario : {{ horario.fecha }}</h2>
+	</div>
+	<br>
+	<a class ="btn btn-primary"href="/add/evento/{{horario.id}}/">Nuevo Evento</a>
+	<br>
+	<h2> Lista de Franjas y Eventos </h2>
+	{% for e in eventos %}
+		<div  class="well well-small">
+		<p> 
+			<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+		</p>
+		{% for f in e.franja.all %}
+			<b>franja : </b> 	
+			{{ f }}<br/>
+		{% endfor %}
+		</div>
+	{% endfor %}
+	<br>
+	<a href="/fichas/">regresar a la lista de fichas</a>
+{% endblock %}
+

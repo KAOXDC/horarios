@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Horarios
+{% endblock %}
+
+{% block content %}
+	<h2>Lista de horarios del Mes </h2>
+	{% for h in horarios %}
+	<p>
+		<b>Ficha :</b> {{ h.ficha }}  <b>Fecha :</b> {{ h.fecha }}
+		<a href="/horario/{{h.id}}">Ver Horario</a>
+	</p>
+	{% endfor %}
+	<a href="/">Regresar Pagina principal</a>		
+{% endblock %}

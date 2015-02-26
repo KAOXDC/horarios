@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Agregar Instructor
+{% endblock %}
+
+{% block content %}
+<form action"." method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input class="btn btn-success" type="submit" value="Guardar Evento">
+	<input class="btn btn-inverse" type="reset" value="Limpiar">
+</form>
+   	<a class="btn " href="/administrar/"> Cancelar </a>
+<br>
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Administrar
+{% endblock %}
+
+{% block content %}
+	<h2>Sistema de horarios CTPI</h2>
+	<a class="btn btn-primary" href="{% url 'vista_agregar_instructor' %}">registrar instructor</a>
+	<br>
+	<a class="btn btn-primary" href="{% url 'vista_agregar_aprendiz' %}">registrar aprendiz</a>
+
+{% endblock %}
