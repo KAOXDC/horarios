@@ -25,3 +25,20 @@ def add_persona_view(request):
 			personas = []
 	ctx = {'form':formulario, 'personas':personas}
 	return render_to_response('expocauca/add_persona.html', ctx,context_instance = RequestContext(request))
+
+def edit_persona_view(request, id_prod):
+	info = ""
+	prod = Persona.objects.get(pk = id_prod)
+	if request.method == "POST":
+		formulario = add_persona_form(request.POST, request.FILES, instance= prod)
+		if formulario.is_valid():
+			edit_prod = formulario.save(commit = False)
+			formulario.save_m2m()
+			#edit_prod.status = True
+			edit_prod.save()
+			info = "Guardado Satisfactoriamente"
+			return HttpResponseRedirect('/expocauca/')
+	else:
+		formulario = add_persona_form(instance = prod)
+	ctx = {'form':formulario, 'informacion':info}
+	return render_to_response('expocauca/add_persona.html', ctx,context_instance = RequestContext(request))
