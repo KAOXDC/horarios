@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<form action"." method="POST">
+{% load humanize %}
+<form action"." method="POST" >
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input class="btn btn-success" type="submit" value="Guardar">
@@ -13,26 +14,32 @@
 </form>
    	<a class="btn " href="/expocauca/"> Cancelar </a>
 <br><br><br>
+<div>
+	<small>
 {% if personas %}
-	<table class = "table table-hover">
+	<table class = "table table-hover table-bordered">
 		<theader>
 			<tr>
-				<th>Nombre</th>
+				<th>Nombres y Apellidos</th>
 				<th>Telefono</th>
-				<th>email</th>
+				<th>Email</th>
 				<th>Programa</th>
-				<th>jornada</th>
+				<th>Jornada</th>
+				<th>Editar</th>
 			</tr>
 		</theader>			
 		{% for p in personas %}
+			
 			<tbody>
-				<tr>
-					<td>{{ p.nombres_y_apellidos }}</td>
+				<tr class="success">
+					<td>{{ p.nombres_y_apellidos|title }}</td>
 					<td>{{ p.telefono }}</td>
 					<td>{{ p.email }}</td>
 					<td>
 					{% for prog in p.programa.all %}
-						{{ prog }}
+						<li class = "icon icon-ok">
+						</li>
+							{{ prog|truncatechars:40 }}
 						<br>
 					{% endfor %}
 					</td>
@@ -42,6 +49,8 @@
 			</tbody>
 		{% endfor %}
 	</table>
+	</small>
+</div>
 
 {% else %}
 	<h2>no hay  personas interesadas</h2>

@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from horarios.apps.expocauca.models import *
 from datetime import date 
 from horarios.apps.expocauca.forms import *
+from django.contrib.auth.models import User
 
 def add_persona_view(request):
 	personas = []
