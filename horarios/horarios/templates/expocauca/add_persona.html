@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	Agregar Persona
+{% endblock %}
+
+{% block content %}
+<form action"." method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input class="btn btn-success" type="submit" value="Guardar">
+	<input class="btn btn-inverse" type="reset" value="Limpiar">
+</form>
+   	<a class="btn " href="/expocauca/"> Cancelar </a>
+<br><br><br>
+{% if personas %}
+	<table class = "table table-hover">
+		<theader>
+			<tr>
+				<th>Nombre</th>
+				<th>Telefono</th>
+				<th>email</th>
+				<th>Programa</th>
+				<th>jornada</th>
+			</tr>
+		</theader>			
+		{% for p in personas %}
+			<tbody>
+				<tr>
+					<td>{{ p.nombres_y_apellidos }}</td>
+					<td>{{ p.telefono }}</td>
+					<td>{{ p.email }}</td>
+					<td>
+					{% for prog in p.programa.all %}
+						{{ prog }}
+						<br>
+					{% endfor %}
+					</td>
+					<td>{{ p.jornada }}</td>
+				</tr>
+			</tbody>
+		{% endfor %}
+	</table>
+
+{% else %}
+	<h2>no hay  personas interesadas</h2>
+
+{% endif %}
+
+{% endblock %}

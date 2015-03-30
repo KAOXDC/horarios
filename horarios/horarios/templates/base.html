@@ -26,12 +26,12 @@
 		<div class = "navbar-inner">
 			<a class ="brand" href="{% url 'vista_principal' %}"> CTPI </a>
 			<ul class = "nav">
-				<li><a href="{% url 'vista_fichas' %}">Fichas</a></li>
 				{% if user.is_authenticated %}
+				<li><a href="{% url 'vista_fichas' %}">Fichas</a></li>
 					<li><a href="{%  url 'vista_administrar' %}">Administrar</a></li>
 				{% endif %}
-				<li><a href="#">Informacion</a></li>
 				{% if user.is_authenticated %}
+				<li><a href="#">Informacion</a></li>
 					<li><a href="{% url 'vista_logout' %}"> Cerrar Sesion </a></li>
 				{% else %}
 					<li><a href="{% url 'vista_login' %}"> Login </a></li>
@@ -56,8 +56,8 @@
 						<h4>Informacion</h4>
 						<div class="alert alert-info">
 							<h5>Sena Mas Trabajo</h5>  
-							<p><b>Direccion </b> : Cra 1  # 12-100</p>
-							<p><b>Telefono</b> : 8 393939</p>
+							<p><b>Direccion </b> : Cra Sena  Alto Cauca</p>
+							<p><b>Telefono</b> : </p>
 							<p>314 690 6848</p>
 							<p>Popayan - Cauca</p>
 						</div>

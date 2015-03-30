@@ -7,7 +7,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 
 def index_view (request):
-	return render_to_response('home/index.html', context_instance = RequestContext(request))
+	#return render_to_response('home/index.html', context_instance = RequestContext(request))
+	return HttpResponseRedirect('/expocauca')
+
 
 def administrar_view(request):
 	return render_to_response('home/administrar.html', context_instance = RequestContext(request))
