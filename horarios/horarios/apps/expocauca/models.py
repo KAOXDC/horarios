@@ -20,6 +20,6 @@ class Persona(models.Model):
 	programa				= models.ManyToManyField(Programa)
 	jornada 				= models.ForeignKey(Jornada, null = True, blank = True)
 	fecha_registro  		= models.DateTimeField(auto_now = True)
-
+	usuario 				= models.CharField(max_length = 500, null = True, blank = True)
 	def __unicode__ (self):
 		return self.nombres_y_apellidos
