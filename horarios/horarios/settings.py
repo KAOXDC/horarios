@@ -9,16 +9,16 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-'''
+
 #configuracion Heroku PostgreSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'ddgfta92lnhq1k',                      # Or path to database file if using sqlite3.
+        'NAME': 'dfjb1v6blubddc',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'xfzdhypeptflwo',
-        'PASSWORD': 'XFwS2lm-mIfu7rOvXKBbfHbWaB',
-        'HOST': 'ec2-50-19-219-235.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'USER': 'jqkgetvxpqmbwy',
+        'PASSWORD': 'D_gcnVr7SGvGsIbYi_EvuoJ0Kb',
+        'HOST': 'ec2-54-163-235-165.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '5432',                      # Set to empty string for default.
     }
 }
@@ -35,7 +35,7 @@ DATABASES = {
     }
 }
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
+'''# Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['horariosctpi.herokuapp.com']
 
