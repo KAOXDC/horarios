@@ -42,7 +42,7 @@ def edit_persona_view(request, id_prod):
 				edit_prod = formulario.save(commit = False)
 				formulario.save_m2m()
 				#edit_prod.status = True
-				add.usuario = request.user.username
+				edit_prod.usuario = request.user.username
 				edit_prod.save()
 				info = "Guardado Satisfactoriamente"
 				return HttpResponseRedirect('/expocauca/')
