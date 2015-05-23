@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from horarios.apps.fichas.models import Ficha, Evento, Horario
-from horarios.apps.fichas.forms import add_horario_form, add_evento_form, add_instructor_form, add_aprendiz_form
+from horarios.apps.fichas.forms import *
 from datetime import date 
 
 def add_instructor_view(request):
@@ -36,7 +39,6 @@ def add_aprendiz_view(request):
 	ctx = {'form':formulario}
 	return render_to_response('fichas/add_aprendiz.html', ctx,context_instance = RequestContext(request))
 
-
 def add_horario_view (request, id_fic):
 	now = date.today()
 	fic = Ficha.objects.get(id = id_fic)
@@ -45,7 +47,7 @@ def add_horario_view (request, id_fic):
 		if form_horario.is_valid():
 			hor = form_horario.save(commit=False)
 			hor.ficha = fic
-			hor.fecha = now
+			#hor.fecha = now
 			hor.save()
 			info = "Horario Guardado Satisfactoriamente"
 			return HttpResponseRedirect('/ficha/%s' %fic.id)
@@ -60,6 +62,8 @@ def add_horario_view (request, id_fic):
 def add_evento_view (request, id_hor):
 	now = date.today()
 	hor = Horario.objects.get(id = id_hor)
+	jor = hor.ficha.jornada
+	print "---------",jor
 	#fic = Ficha.objects.get(id = id_fic)
 	if request.method == "POST":
 		form_evento = add_evento_form(request.POST, prefix = "eve")
@@ -73,12 +77,70 @@ def add_evento_view (request, id_hor):
 		else:
 			info = "Fallo en el registro del Horario"
 	else:
-		form_evento = add_evento_form(prefix = "eve")
-	
+		if jor == "m":
+			form_evento = add_evento_form_M(prefix = "eve")
+			
+		elif jor == "t":
+			form_evento = add_evento_form_T(prefix = "eve")
+		
+		elif jor == "n":
+			form_evento = add_evento_form_N(prefix = "eve")
+		
+		else:	
+			form_evento = add_evento_form(prefix = "eve")
+			
 	ctx = {'form_evento':form_evento, 'hor':hor}
 	return render_to_response('fichas/add_evento.html', ctx, context_instance = RequestContext(request))
 
+def add_ficha_view (request):
+	nombre_vista = "Agregar Ficha"
+	if request.method == "POST":
+		form_ficha = add_ficha_form(request.POST)
+		if form_ficha.is_valid():
+			fic = form_ficha.save(commit = False)
+			fic.save()
+	else:
+		form_ficha = add_ficha_form()
+	ctx = {'form':form_ficha, 'nombre_vista':nombre_vista}
+	return render_to_response('fichas/agregar.html', ctx, context_instance = RequestContext(request))
 
+
+def add_franja_view(request):
+	nombre_vista = "Agregar Franja"
+	if request.method == "POST":
+		form = add_franja_form(request.POST)
+		if form.is_valid():
+			f = form.save(commit = False)
+			f.save()
+	else:
+		form = add_franja_form()
+	ctx = {'form':form, 'nombre_vista':nombre_vista}
+	return render_to_response('fichas/agregar.html', ctx, context_instance = RequestContext(request))
+
+def add_programa_view(request):
+	nombre_vista = "Agregar Programa"
+	if request.method == "POST":
+		form = add_programa_form(request.POST)
+		if form.is_valid():
+			f = form.save(commit = False)
+			f.save()
+			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+	else:
+		form = add_programa_form()
+	ctx = {'form':form, 'nombre_vista':nombre_vista}
+	return render_to_response('fichas/agregar.html', ctx, context_instance = RequestContext(request))
+
+def add_tipo_programa_view(request):
+	nombre_vista = "Agregar Tipo de Programa"
+	if request.method == "POST":
+		form = add_tipo_programa_form(request.POST)
+		if form.is_valid():
+			f = form.save(commit = False)
+			f.save()
+	else:
+		form = add_tipo_programa_form()
+	ctx = {'form':form, 'nombre_vista':nombre_vista}
+	return render_to_response('fichas/agregar.html', ctx, context_instance = RequestContext(request))
 
 '''
 def add_product_view(request):

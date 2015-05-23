@@ -11,7 +11,7 @@ MANAGERS = ADMINS
 
 
 #configuracion Heroku PostgreSQL
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'dfjb1v6blubddc',                      # Or path to database file if using sqlite3.
@@ -35,7 +35,8 @@ DATABASES = {
     }
 }
 
-'''# Hosts/domain names that are valid for this site; required if DEBUG is False
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['horariosctpi.herokuapp.com']
 
@@ -47,7 +48,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-es'
+LANGUAGE_CODE = 'es-co'
 
 SITE_ID = 1
 

@@ -13,17 +13,156 @@
 	<a class ="btn btn-primary"href="/add/evento/{{horario.id}}/">Nuevo Evento</a>
 	<br>
 	<h2> Lista de Franjas y Eventos </h2>
-	{% for e in eventos %}
-		<div  class="well well-small">
-		<p> 
-			<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
-		</p>
-		{% for f in e.franja.all %}
-			<b>franja : </b> 	
-			{{ f }}<br/>
-		{% endfor %}
-		</div>
-	{% endfor %}
+
+	<div class="well well-small">
+	<div class="bs-docs-example" >
+            <ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#lunes" data-toggle="tab">Lunes</a></li>
+				<li class=""><a href="#martes" data-toggle="tab">Martes</a></li>
+				<li class=""><a href="#miercoles" data-toggle="tab">Miercoles</a></li>
+				<li class=""><a href="#jueves" data-toggle="tab">Jueves</a></li>
+				<li class=""><a href="#viernes" data-toggle="tab">Viernes</a></li>
+				<li class=""><a href="#sabado" data-toggle="tab">Sabado</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="lunes">
+                <p>
+                	horario del lunes
+                	{% for e in eventos %}
+						{% if e.dias == "lunes" %}
+							<br>
+							<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+							<br>
+							<b>franja : </b> {{e.franja.all|first}} - 
+
+								{% for f in e.franja.all %}
+									{% if forloop.last %}  
+										{{ f }}
+									{% endif %}
+								{% endfor %}
+
+							<br>
+							<a class ="btn btn-info"href="/add/evento/{{horario.id}}/">Ver Competencia</a>
+						{% endif %}
+					{% endfor %} 
+	
+                </p>
+              </div>
+              <div class="tab-pane fade" id="martes">
+                <p>Horario del martes </p>
+                 	{% for e in eventos %}
+						{% if e.dias == "martes" %}
+							<br>
+							<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+							<br>
+							<b>franja : </b> {{e.franja.all|first}} - 
+
+								{% for f in e.franja.all %}
+									{% if forloop.last %}  
+										{{ f }}
+									{% endif %}
+								{% endfor %}
+
+							<br>
+							<a class ="btn btn-info"href="/add/evento/{{horario.id}}/">Ver Competencia</a>
+						{% endif %}
+					{% endfor %} 
+	
+
+              </div>
+              <div class="tab-pane fade" id="miercoles">
+                <p>Horario del miercoles</p>
+                	{% for e in eventos %}
+						{% if e.dias == "miercoles" %}
+							<br>
+							<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+							<br>
+							<b>franja : </b> {{e.franja.all|first}} - 
+
+								{% for f in e.franja.all %}
+									{% if forloop.last %}  
+										{{ f }}
+									{% endif %}
+								{% endfor %}
+
+							<br>
+							<a class ="btn btn-info"href="/add/evento/{{horario.id}}/">Ver Competencia</a>
+						{% endif %}
+					{% endfor %} 
+	
+              </div>
+              <div class="tab-pane fade" id="jueves">
+                <p>Horario del jueves</p>
+                	{% for e in eventos %}
+						{% if e.dias == "jueves" %}
+							<br>
+							<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+							<br>
+							<b>franja : </b> {{e.franja.all|first}} - 
+
+								{% for f in e.franja.all %}
+									{% if forloop.last %}  
+										{{ f }}
+									{% endif %}
+								{% endfor %}
+
+							<br>
+							<a class ="btn btn-info"href="/add/evento/{{horario.id}}/">Ver Competencia</a>
+						{% endif %}
+					{% endfor %} 
+	
+              </div>
+              <div class="tab-pane fade" id="viernes">
+                <p>Horario del viernes</p>
+                	{% for e in eventos %}
+						{% if e.dias == "viernes" %}
+							<br>
+							<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+							<br>
+							<b>franja : </b> {{e.franja.all|first}} - 
+
+								{% for f in e.franja.all %}
+									{% if forloop.last %}  
+										{{ f }}
+									{% endif %}
+								{% endfor %}
+
+							<br>
+							<a class ="btn btn-info"href="/add/evento/{{horario.id}}/">Ver Competencia</a>
+						{% endif %}
+					{% endfor %} 
+	
+              </div>
+              <div class="tab-pane fade" id="sabado">
+                <p>Horario del sabado</p>
+                	{% for e in eventos %}
+						{% if e.dias == "sabado" %}
+							<br>
+							<b>Dia: </b>{{ e.dias }} - <b>Instructor :</b> {{ e.instructor }}
+							<br>
+							<b>franja : </b> {{e.franja.all|first}} - 
+
+								{% for f in e.franja.all %}
+									{% if forloop.last %}  
+										{{ f }}
+									{% endif %}
+								{% endfor %}
+
+							<br>
+							<a class ="btn btn-info"href="/add/evento/{{horario.id}}/">Ver Competencia</a>
+						{% endif %}
+					{% endfor %} 
+	
+              </div>              
+            </div>
+	</div>
+
+	</div>
+
+-----------------------------------------------------------
+	
+
+
 	<br>
 	<a href="/fichas/">regresar a la lista de fichas</a>
 {% endblock %}

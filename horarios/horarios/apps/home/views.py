@@ -1,14 +1,14 @@
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from horarios.apps.fichas.models import Horario, Evento, Franja, Ficha
+from horarios.apps.fichas.models import *
 from horarios.apps.home.forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 
 def index_view (request):
-	#return render_to_response('home/index.html', context_instance = RequestContext(request))
-	return HttpResponseRedirect('/expocauca')
+	#return HttpResponseRedirect('/expocauca')
+	return render_to_response('home/index.html', context_instance = RequestContext(request))
 
 
 def administrar_view(request):
@@ -35,20 +35,47 @@ def single_ficha_view (request, id_fic):
 
 def single_horario_ficha_view (request, id_hor):
 	hor = Horario.objects.get(id = id_hor)
-	print hor
-	lista_eventos = Evento.objects.filter(horario = hor.id)
-	print lista_eventos
+	lista_eventos = Evento.objects.filter(horario = hor)
 	fra = []
+	fk = 0
+	#cat = Categoria.objects.get(id=2)
+	#lista_prod = Producto.objects.filter(categorias = cat)
 	#fra = Evento.objects.filter(franja__in = lista_eventos )
-	'''
-				for f in lista_eventos:
-					e = lista_eventos.objects.get(id = f.id)
-					frajita = e.franja.all()
-					fra.append(franjita)
-			'''
-	#fra = Franja.objects.filter()
-	ctx = { 'horario':hor, 'eventos':lista_eventos, 'franjas':fra }
+	fra = Franja.objects.filter()
+	for i in fra:
+		for k in lista_eventos:
+			fk = fk + 1
+
+	ctx = { 'horario':hor, 'eventos':lista_eventos, 'franjas':fra, 'fk':fk }
 	return render_to_response('home/single_horario_ficha.html', ctx, context_instance = RequestContext(request))
+
+def instructores_view(request):
+	nombre_vista = "Instructores"
+	ins = Instructor.objects.all()
+	ctx = {'lista':ins, 'nombre_vista':nombre_vista, }
+	return render_to_response('home/listas.html', ctx, context_instance = RequestContext(request))
+
+def single_instructor_view(request, id_ins):
+	nombre_vista = "single instructor"
+	ins = Instructor.objects.get(pk = id_ins)
+	lista_eventos = Evento.objects.filter(instructor = ins)
+
+	ctx = { 'detalle':ins,  'eventos':lista_eventos, 'nombre_vista':nombre_vista }
+	return render_to_response('home/detalle.html', ctx, context_instance = RequestContext(request))
+
+def franjas_view(request):
+	nombre_vista = "Franjas"
+	lista = Franja.objects.all()
+	ctx = {'lista':lista, 'nombre_vista':nombre_vista, }
+	return render_to_response('home/listas.html', ctx, context_instance = RequestContext(request))
+
+def single_franja_view(request, id_franja):
+	nombre_vista = "single franja"
+	lista = Franja.objects.get(pk = id_franja)
+	ctx = { 'detalle':lista, 'nombre_vista':nombre_vista,}
+	return render_to_response('home/detalle.html', ctx, context_instance = RequestContext(request))
+
+
 
 
 def login_view(request):

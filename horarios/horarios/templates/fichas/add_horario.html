@@ -5,6 +5,31 @@
 {% endblock %}
 
 {% block content %}
+
+<style>
+.ui-datepicker-calendar {
+    display: none;
+    }
+</style>
+<script>
+  $(function() {
+    $( "#datepicker1 , #datepicker").datepicker({
+      changeMonth: true,
+      changeYear: false,
+      showButtonPanel: true,
+      dateFormat: 'dd/mm/yy',
+      gotoCurrent: true,
+      onClose: function(dateText, inst) {
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            $(this).datepicker('setDate', new Date(2015, month, 1));
+        }
+      // You can put more options here.
+
+    });
+  });
+  </script>
+
+
 <h3>Desea crear el horario ?</h3>
 <form action"." method="POST">
 	{% csrf_token %}

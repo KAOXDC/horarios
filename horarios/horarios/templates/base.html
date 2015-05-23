@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="/media/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/media/bootstrap/css/bootstrap-responsive.css">
 	<link rel="stylesheet" type="text/css" href="/media/css/excite-bike/jquery-ui-1.10.3.custom.css">
-
+	<link rel="stylesheet" href="/media/css/calendar.css">
 	
 	<script src="/media/js/ajax.js"></script>
 	<script src="/media/js/jquery.js"></script>
@@ -27,9 +27,9 @@
 			<a class ="brand" href="{% url 'vista_principal' %}"> CTPI </a>
 			<ul class = "nav">
 				{% if user.is_authenticated and user.is_staff %}
-				<li><a href="{% url 'vista_fichas' %}">Fichas</a></li>
+					<li><a href="{% url 'vista_fichas' %}">Fichas</a></li>
 					<li><a href="{%  url 'vista_administrar' %}">Administrar</a></li>
-				<li><a href="#">Informacion</a></li>
+					<li><a href="{% url 'vista_instructores' %}">Instructores</a></li>
 				{% endif %}
 				{% if user.is_authenticated %}
 					<li><a href="{% url 'vista_logout' %}"> Cerrar Sesion </a></li>

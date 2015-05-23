@@ -5,13 +5,16 @@
 {% endblock %}
 
 {% block content %}
-
 	<h2>Lista de fichas del CTPI </h2>
+	<a class = "btn btn-primary" href="{% url 'vista_agregar_ficha' %}"> Agregar una Ficha Nueva </a>
+	<br><br>
 	{% for f in fichas %}
 	<div class="well well-small">
 		<p>
 			<b>Ficha :</b> {{ f.identificador }}  
 			<a class = "btn btn-success" href="/ficha/{{f.id}}">Ver Ficha</a>
+			programa
+			
 		</p>
 	</div>
 	

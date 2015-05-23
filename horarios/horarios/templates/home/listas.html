@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+	{{ nombre_vista }}
+{% endblock %}
+
+{% block content %}
+	<h2>  
+		{{ nombre_vista }}
+	</h2>
+
+	{% for i in lista %}
+	<p>
+		{% if nombre_vista  == 'Instructores' %}
+			<b>Instructor :</b> {{ i.nombres }}  
+			<a href="/instructor/{{ i.id }}">Ver Detalle</a>
+		{% endif %}
+		{% if nombre_vista == 'Programas' %}
+			<b>Programa :</b> {{ i.nombre }}  
+			<a href="/programa/{{ i.id }}">Ver Detalle</a>
+		{% endif %}
+		{% if nombre_vista == 'Tipos de Programas' %}
+			<b>Praograma :</b> {{ i.nombre }}  
+			<a href="/tipo_programa/{{ i.id }}">Ver Detalle</a>
+		{% endif %}
+		{% if nombre_vista == 'Aprendices' %}
+			<b>Aprendiz :</b> {{ i.nombres }}  
+			<a href="/aprendiz/{{ i.id }}">Ver Detalle</a>
+		{% endif %}
+		{% if nombre_vista == 'Franjas' %}
+			<a class="btn btn-primary" href="{% url 'vista_agregar_franja' %}">registrar franja</a>
+			<b>Franja :</b> {{ i.nombre }}  
+			<a href="/franja/{{ i.id }}">Ver Detalle</a>
+		{% endif %}
+	</p>
+	{% endfor %}
+	<a href="/">Regresar Pagina principal</a>		
+{% endblock %}	

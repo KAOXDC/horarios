@@ -11,6 +11,10 @@ urlpatterns = patterns('horarios.apps.home.views',
 		url(r'^logout/$', 'logout_view', name = 'vista_logout'),
 
 		
+		url(r'^instructores/$','instructores_view', name = 'vista_instructores'),
+		url(r'^instructor/(?P<id_ins>.*)/$', 'single_instructor_view', name = 'vista_instructor_ficha'),
+		url(r'^franjas/$','franjas_view', name = 'vista_franjas'),
+		url(r'^franja/(?P<id_franja>.*)/$', 'single_franja_view', name = 'vista_single_franja'),
 		
 		#url(r'^productos/$', 'productos_view', name = 'vista_productos'),
 		#url(r'^productos/page/(?P<pagina>.*)/$', 'productos_view', name = 'vista_productos'),
