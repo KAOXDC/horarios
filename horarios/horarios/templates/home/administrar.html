@@ -6,23 +6,58 @@
 
 {% block content %}
 	<h2>Sistema de horarios CTPI</h2>
-	<a class="btn btn-primary" href="{% url 'vista_agregar_instructor' %}">registrar instructor</a>
-	<br>
-	<a class="btn btn-primary" href="{% url 'vista_agregar_aprendiz' %}">registrar aprendiz</a>
-	<br>
-	<a class="btn btn-primary" href="{% url 'vista_agregar_ficha' %}">registrar ficha</a>
-	<br>
-	<a class="btn btn-primary" href="{% url 'vista_agregar_tipo_programa' %}">registrar tipo de porgrama</a>
-	<br>
-	<a class="btn btn-primary" href="{% url 'vista_agregar_programa' %}">registrar programa</a>
-	<br>
-
-	<a class="btn btn-primary" href="{% url 'vista_franjas' %}">Franjas</a>
 
 
+	
 
+			<div class="well tabbable tabs-left">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#Instructor" data-toggle="tab">Instructor </a></li>
+                <li class=""><a href="#lB" data-toggle="tab">Programa</a></li>
+                <li class=""><a href="#lC" data-toggle="tab">Ficha</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="Instructor">
+					<div class="alert alert-info">
+						Personal
+					</div>
+					<p>
+						<a class="btn btn-primary" href="{% url 'vista_agregar_instructor' %}">registrar instructor</a>
+					</p>
+					
+                </div>
+                <div class="tab-pane" id="lB">
+					<div class="alert alert-info">
+						Programa
+					</div>
+					<p>
+						<a class="btn btn-primary" href="{% url 'vista_agregar_tipo_programa' %}">registrar tipo de porgrama</a>
+					</p>
+					<p>
+						<a class="btn btn-primary" href="{% url 'vista_agregar_programa' %}">registrar programa</a>
+					</p>
+					<p>registrar Competencia</p>
+					<p>registrar Resultados de Aprendizaje</p>
 
+                </div>
+                <div class="tab-pane" id="lC">
 
+					<div class="alert alert-info">
+						Ficha
+					</div>
+					<p>
+						<a class="btn btn-primary" href="{% url 'vista_franjas' %}">Franjas</a>
+					</p>
+
+					<p>
+						<a class="btn btn-primary" href="{% url 'vista_agregar_ficha' %}">registrar ficha</a>
+					</p>
+					<p>
+						<a class="btn btn-primary" href="{% url 'vista_agregar_aprendiz' %}">registrar aprendiz</a>
+					</p>
+                </div>
+              </div>
+            </div>
 
 
 {% endblock %}

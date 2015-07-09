@@ -18,7 +18,9 @@ admin.site.register(Jornada)
 
 
 admin.site.register(Aprendiz)
+admin.site.register(Competencia)
+admin.site.register(Resultados)
 admin.site.register(Ficha)
-admin.site.register(Franja)
 admin.site.register(Evento)
+admin.site.register(Franja)
 admin.site.register(Horario, Horario_admin)

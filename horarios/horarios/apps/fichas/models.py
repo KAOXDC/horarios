@@ -18,10 +18,19 @@ jornadas = (
 
 )
 
+fases = (
+	('analisis','analisis'),
+	('diseño','diseño'),
+	('desarrollo','desarrollo'),
+	('implantacion','implantacion'),
+	
+)
+
+
 class Tipo_Programa (models.Model):
 	nombres 		= models.CharField(max_length = 140, unique = True)
 	def __unicode__(self):
-		return self.nombre
+		return self.nombres
 
 class Jornada (models.Model):
 	nombre 			= models.CharField(max_length = 140)
@@ -36,16 +45,19 @@ class Programa (models.Model):
 	def __unicode__(self):
 		return self.nombre
 
-class Resultados (models.Model):
+class Competencia (models.Model):
+	codigo 			= models.CharField(max_length = 140)
 	nombre 			= models.CharField(max_length = 140)
+	programa		= models.ManyToManyField(Programa)
+	fase 			= models.CharField(max_length = 140, choices = fases)
+
 	def __unicode__(self):
 		return self.nombre
 
-class Competencia(models.Model):
+class Resultados (models.Model):
+	codigo 			= models.CharField(max_length = 140)
 	nombre 			= models.CharField(max_length = 140)
-	resultados		= models.ManyToManyField(Resultados)
-	programa		= models.ManyToManyField(Resultados)
-	
+	competencia 	= models.ForeignKey(Competencia)
 	def __unicode__(self):
 		return self.nombre
 
@@ -100,20 +112,15 @@ class Franja(models.Model):
 	def __unicode__(self):
 		return self.nombre
 
-
-
 class Evento(models.Model):
 	dias 			= models.CharField(max_length = 20, choices = dias_semana )
 	instructor 		= models.ForeignKey(Instructor)
 	franja 			= models.ManyToManyField(Franja)
 	horario 		= models.ForeignKey(Horario)
-	#competencia		= models.ForeignKey(Competencia)
+	competencia		= models.ForeignKey(Competencia)
 	#resultados		= models.ForeignKey(Resultados)
 	def __unicode__(self):
 		return self.dias
-
-
-
 
 
 

@@ -59,6 +59,9 @@ def add_horario_view (request, id_fic):
 	ctx = {'form_horario':form_horario, 'fic':fic}
 	return render_to_response('fichas/add_horario.html', ctx, context_instance = RequestContext(request))
 
+
+
+
 def add_evento_view (request, id_hor):
 	now = date.today()
 	hor = Horario.objects.get(id = id_hor)
@@ -70,13 +73,37 @@ def add_evento_view (request, id_hor):
 		if form_evento.is_valid():
 			eve = form_evento.save(commit=False)
 			eve.horario = hor
-			eve.save()
-			form_evento.save_m2m()
+			print "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",eve
+			#verificacion de horarios repetidos
+			#x = Evento.objects.get(id=eve.id)
+			#x = Evento.objects.get(franja=eve.franja)
+			#f = x.franja.all()
+	
+			try:
+				y = Evento.objects.get(dias = eve.dias, instructor = eve.instructor, horario__fecha = eve.horario.fecha)
+				print "-.-.-.-.-.-.-.-.-.-.-.--.-.-.-.-.-.-.",y
+				if y is None: #len(y) == 0:
+					#no tendria eventos repetidos
+					eve.save()
+					form_evento.save_m2m()
+			except:
+				#no tendria eventos repetidos
+				eve.save()
+				form_evento.save_m2m()
+
+			#cat = Categoria.objects.get(nombre__iexact=busqueda)
+			#categorias = Libro.objects.filter(categoria = cat, disponibilidad = True)
+			
+			#prod = producto.objects.get(id=id_prod)
+			#cats = prod.categorias.all() # Obteniendo las categorias del producto encontrado
+
+			
 			info = "Horario Guardado Satisfactoriamente"
 			return HttpResponseRedirect('/horario/%s' %hor.id)
 		else:
 			info = "Fallo en el registro del Horario"
 	else:
+		#Validacion de eventos  para mostrar al agregar evento el formulario correspondiente a la JORNADA
 		if jor == "m":
 			form_evento = add_evento_form_M(prefix = "eve")
 			
